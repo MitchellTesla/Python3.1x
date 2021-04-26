@@ -142,8 +142,12 @@ module Python
 
     type_ignore = TypeIgnore(int lineno, string tag)
 }
+
+
 Node classes
+
 class ast.AST
+
 This is the base of all AST node classes. The actual node classes are derived from the Parser/Python.asdl file, which is reproduced below. They are defined in the _ast C module and re-exported in ast.
 
 There is one class defined for each left-hand side symbol in the abstract grammar (for example, ast.stmt or ast.expr). In addition, there is one class defined for each constructor on the right-hand side; these classes inherit from the classes for the left-hand side trees. For example, ast.BinOp inherits from ast.expr. For production rules with alternatives (aka “sums”), the left-hand side class is abstract: only instances of specific constructor nodes are ever created.
@@ -179,10 +183,13 @@ node.operand.lineno = 0
 node.operand.col_offset = 0
 node.lineno = 0
 node.col_offset = 0
+
 or the more compact
 
 node = ast.UnaryOp(ast.USub(), ast.Constant(5, lineno=0, col_offset=0),
                    lineno=0, col_offset=0)
+                   
+                   
 Changed in version 3.8: Class ast.Constant is now used for all constants.
 
 Changed in version 3.9: Simple indices are represented by their value, extended slices are represented as tuples.
@@ -199,6 +206,8 @@ A constant value. The value attribute of the Constant literal contains the Pytho
 >>> print(ast.dump(ast.parse('123', mode='eval'), indent=4))
 Expression(
     body=Constant(value=123))
+    
+    
 class ast.FormattedValue(value, conversion, format_spec)
 Node representing a single formatting field in an f-string. If the string contains a single formatting field and nothing else the node can be isolated otherwise it appears in JoinedStr.
 
@@ -238,6 +247,8 @@ Expression(
                 format_spec=JoinedStr(
                     values=[
                         Constant(value='.3')]))]))
+                        
+                        
 class ast.List(elts, ctx)
 class ast.Tuple(elts, ctx)
 A list or tuple. elts holds a list of nodes representing the elements. ctx is Store if the container is an assignment target (i.e. (x,y)=something), and Load otherwise.
@@ -258,6 +269,8 @@ Expression(
             Constant(value=2),
             Constant(value=3)],
         ctx=Load()))
+        
+        
 class ast.Set(elts)
 A set. elts holds a list of nodes representing the set’s elements.
 
@@ -268,6 +281,8 @@ Expression(
             Constant(value=1),
             Constant(value=2),
             Constant(value=3)]))
+            
+            
 class ast.Dict(keys, values)
 A dictionary. keys and values hold lists of nodes representing the keys and the values respectively, in matching order (what would be returned when calling dictionary.keys() and dictionary.values()).
 
@@ -282,6 +297,8 @@ Expression(
         values=[
             Constant(value=1),
             Name(id='d', ctx=Load())]))
+            
+            
 Variables
 class ast.Name(id, ctx)
 A variable name. id holds the name as a string, and ctx is one of the following types.
@@ -314,6 +331,8 @@ Module(
             targets=[
                 Name(id='a', ctx=Del())])],
     type_ignores=[])
+    
+    
 class ast.Starred(value, ctx)
 A *var variable reference. value holds the variable, typically a Name node. This type must be used when building a Call node with *args.
 
@@ -331,6 +350,8 @@ Module(
                     ctx=Store())],
             value=Name(id='it', ctx=Load()))],
     type_ignores=[])
+    
+    
 Expressions
 class ast.Expr(value)
 When an expression, such as a function call, appears as a statement by itself with its return value not used or stored, it is wrapped in this container. value holds one of the other nodes in this section, a Constant, a Name, a Lambda, a Yield or YieldFrom node.
@@ -343,6 +364,8 @@ Module(
                 op=USub(),
                 operand=Name(id='a', ctx=Load())))],
     type_ignores=[])
+    
+    
 class ast.UnaryOp(op, operand)
 A unary operation. op is the operator, and operand any expression node.
 
@@ -357,6 +380,8 @@ Expression(
     body=UnaryOp(
         op=Not(),
         operand=Name(id='x', ctx=Load())))
+        
+        
 class ast.BinOp(left, op, right)
 A binary operation (like addition or division). op is the operator, and left and right are any expression nodes.
 
@@ -366,6 +391,8 @@ Expression(
         left=Name(id='x', ctx=Load()),
         op=Add(),
         right=Name(id='y', ctx=Load())))
+        
+        
 class ast.Add
 class ast.Sub
 class ast.Mult
@@ -393,6 +420,8 @@ Expression(
         values=[
             Name(id='x', ctx=Load()),
             Name(id='y', ctx=Load())]))
+            
+            
 class ast.And
 class ast.Or
 Boolean operator tokens.
@@ -410,6 +439,8 @@ Expression(
         comparators=[
             Name(id='a', ctx=Load()),
             Constant(value=10)]))
+            
+            
 class ast.Eq
 class ast.NotEq
 class ast.Lt
@@ -446,6 +477,8 @@ Expression(
                 value=Name(id='c', ctx=Load())),
             keyword(
                 value=Name(id='e', ctx=Load()))]))
+                
+                
 class ast.keyword(arg, value)
 A keyword argument to a function call or class definition. arg is a raw string of the parameter name, value is a node to pass in.
 
@@ -458,6 +491,8 @@ Expression(
         test=Name(id='b', ctx=Load()),
         body=Name(id='a', ctx=Load()),
         orelse=Name(id='c', ctx=Load())))
+        
+        
 class ast.Attribute(value, attr, ctx)
 Attribute access, e.g. d.keys. value is a node, typically a Name. attr is a bare string giving the name of the attribute, and ctx is Load, Store or Del according to how the attribute is acted on.
 
@@ -467,6 +502,8 @@ Expression(
         value=Name(id='snake', ctx=Load()),
         attr='colour',
         ctx=Load()))
+        
+        
 class ast.NamedExpr(target, value)
 A named expression. This AST node is produced by the assignment expressions operator (also known as the walrus operator). As opposed to the Assign node in which the first argument can be multiple nodes, in this case both target and value must be single nodes.
 
@@ -475,6 +512,8 @@ Expression(
     body=NamedExpr(
         target=Name(id='x', ctx=Store()),
         value=Constant(value=4)))
+        
+        
 Subscripting
 class ast.Subscript(value, slice, ctx)
 A subscript, such as l[1]. value is the subscripted object (usually sequence or mapping). slice is an index, slice or key. It can be a Tuple and contain a Slice. ctx is Load, Store or Del according to the action performed with the subscript.
@@ -491,6 +530,8 @@ Expression(
                 Constant(value=3)],
             ctx=Load()),
         ctx=Load()))
+        
+        
 class ast.Slice(lower, upper, step)
 Regular slicing (on the form lower:upper or lower:upper:step). Can occur only inside the slice field of Subscript, either directly or as an element of Tuple.
 
@@ -502,11 +543,14 @@ Expression(
             lower=Constant(value=1),
             upper=Constant(value=2)),
         ctx=Load()))
+        
+        
 Comprehensions
 class ast.ListComp(elt, generators)
 class ast.SetComp(elt, generators)
 class ast.GeneratorExp(elt, generators)
 class ast.DictComp(key, value, generators)
+
 List and set comprehensions, generator expressions, and dictionary comprehensions. elt (or key and value) is a single node representing the part that will be evaluated for each item.
 
 generators is a list of comprehension nodes.
@@ -535,6 +579,7 @@ Expression(
                 iter=Name(id='numbers', ctx=Load()),
                 ifs=[],
                 is_async=0)]))
+               
 >>> print(ast.dump(ast.parse('{x for x in numbers}', mode='eval'), indent=4))
 Expression(
     body=SetComp(
@@ -545,6 +590,8 @@ Expression(
                 iter=Name(id='numbers', ctx=Load()),
                 ifs=[],
                 is_async=0)]))
+                
+                
 class ast.comprehension(target, iter, ifs, is_async)
 One for clause in a comprehension. target is the reference to use for each element - typically a Name or Tuple node. iter is the object to iterate over. ifs is a list of test expressions: each for clause can have multiple ifs.
 
@@ -609,6 +656,8 @@ Expression(
                 iter=Name(id='soc', ctx=Load()),
                 ifs=[],
                 is_async=1)]))
+                
+                
 Statements
 class ast.Assign(targets, value, type_comment)
 An assignment. targets is a list of nodes, and value is a single node.
@@ -640,6 +689,8 @@ Module(
                     ctx=Store())],
             value=Name(id='c', ctx=Load()))],
     type_ignores=[])
+    
+    
 class ast.AnnAssign(target, annotation, value, simple)
 An assignment with a type annotation. target is a single node and can be a Name, a Attribute or a Subscript. annotation is the annotation, such as a Constant or Name node. value is a single optional node. simple is a boolean integer set to True for a Name node in target that do not appear in between parenthesis and are hence pure names and not expressions.
 
@@ -685,6 +736,8 @@ Module(
             annotation=Name(id='int', ctx=Load()),
             simple=0)],
     type_ignores=[])
+    
+    
 class ast.AugAssign(target, op, value)
 Augmented assignment, such as a += 1. In the following example, target is a Name node for x (with the Store context), op is Add, and value is a Constant with value for 1.
 
@@ -698,6 +751,8 @@ Module(
             op=Add(),
             value=Constant(value=2))],
     type_ignores=[])
+    
+    
 class ast.Raise(exc, cause)
 A raise statement. exc is the exception object to be raised, normally a Call or Name, or None for a standalone raise. cause is the optional part for y in raise x from y.
 
@@ -708,6 +763,8 @@ Module(
             exc=Name(id='x', ctx=Load()),
             cause=Name(id='y', ctx=Load()))],
     type_ignores=[])
+    
+    
 class ast.Assert(test, msg)
 An assertion. test holds the condition, such as a Compare node. msg holds the failure message.
 
@@ -718,6 +775,8 @@ Module(
             test=Name(id='x', ctx=Load()),
             msg=Name(id='y', ctx=Load()))],
     type_ignores=[])
+    
+    
 class ast.Delete(targets)
 Represents a del statement. targets is a list of nodes, such as Name, Attribute or Subscript nodes.
 
@@ -738,6 +797,7 @@ Module(
     body=[
         Pass()],
     type_ignores=[])
+    
 Other statements which are only applicable inside functions or loops are described in other sections.
 
 Imports
@@ -753,6 +813,8 @@ Module(
                 alias(name='y'),
                 alias(name='z')])],
     type_ignores=[])
+    
+    
 class ast.ImportFrom(module, names, level)
 Represents from x import y. module is a raw string of the ‘from’ name, without any leading dots, or None for statements such as from . import foo. level is an integer holding the level of the relative import (0 means absolute import).
 
@@ -767,6 +829,8 @@ Module(
                 alias(name='z')],
             level=0)],
     type_ignores=[])
+    
+    
 class ast.alias(name, asname)
 Both parameters are raw strings of the names. asname can be None if the regular name is to be used.
 
@@ -780,9 +844,12 @@ Module(
                 alias(name='c')],
             level=2)],
     type_ignores=[])
+    
+    
 Control flow
 Note Optional clauses such as else are stored as an empty list if they’re not present.
 class ast.If(test, body, orelse)
+
 An if statement. test holds a single node, such as a Compare node. body and orelse each hold a list of nodes.
 
 elif clauses don’t have a special representation in the AST, but rather appear as extra If nodes within the orelse section of the previous one.
@@ -812,6 +879,8 @@ Module(
                         Expr(
                             value=Constant(value=Ellipsis))])])],
     type_ignores=[])
+    
+    
 class ast.For(target, iter, body, orelse, type_comment)
 A for loop. target holds the variable(s) the loop assigns to, as a single Name, Tuple or List node. iter holds the item to be looped over, again as a single node. body and orelse contain lists of nodes to execute. Those in orelse are executed if the loop finishes normally, rather than via a break statement.
 
@@ -836,6 +905,8 @@ Module(
                 Expr(
                     value=Constant(value=Ellipsis))])],
     type_ignores=[])
+    
+    
 class ast.While(test, body, orelse)
 A while loop. test holds the condition, such as a Compare node.
 
@@ -887,6 +958,8 @@ Module(
                         Continue()])],
             orelse=[])],
     type_ignores=[])
+    
+    
 class ast.Try(body, handlers, orelse, finalbody)
 try blocks. All attributes are list of nodes to execute, except for handlers, which is a list of ExceptHandler nodes.
 
@@ -927,6 +1000,8 @@ Module(
                 Expr(
                     value=Constant(value=Ellipsis))])],
     type_ignores=[])
+    
+    
 class ast.ExceptHandler(type, name, body)
 A single except clause. type is the exception type it will match, typically a Name node (or None for a catch-all except: clause). name is a raw string for the name to hold the exception, or None if the clause doesn’t have as foo. body is a list of nodes.
 
@@ -953,6 +1028,8 @@ Module(
             orelse=[],
             finalbody=[])],
     type_ignores=[])
+    
+    
 class ast.With(items, body, type_comment)
 A with block. items is a list of withitem nodes representing the context managers, and body is the indented block inside the context.
 
@@ -985,6 +1062,8 @@ Module(
                             Name(id='d', ctx=Load())],
                         keywords=[]))])],
     type_ignores=[])
+    
+    
 class ast.Match(subject, cases)
 A match statement. subject holds the subject of the match (the object that is being matched against the cases) and cases contains an iterable of match_case nodes with the different cases.
 
@@ -1026,6 +1105,8 @@ Module(
                         Expr(
                             value=Constant(value=Ellipsis))])])],
     type_ignores=[])
+    
+    
 class ast.MatchAs(pattern, name)
 A match “as-pattern”. The as-pattern matches whatever pattern is on its left-hand side, but also binds the value to a name. pattern contains the match pattern that will be used to match the subject agsinst. The name attribute contains the name that will be binded if the pattern is successful.
 
@@ -1050,6 +1131,8 @@ Module(
                         Expr(
                             value=Constant(value=Ellipsis))])])],
     type_ignores=[])
+    
+    
 class ast.MatchOr(patterns)
 A match “or-pattern”. An or-pattern matches each of its subpatterns in turn to the subject, until one succeeds. The or-pattern is then deemed to succeed. If none of the subpatterns succeed the or-pattern fails. The patterns attribute contains a list of match patterns nodes that will be matched against the subject.
 
@@ -1075,6 +1158,8 @@ Module(
                         Expr(
                             value=Constant(value=Ellipsis))])])],
     type_ignores=[])
+    
+    
 Function and class definitions
 class ast.FunctionDef(name, args, body, decorator_list, returns, type_comment)
 A function definition.
@@ -1110,6 +1195,8 @@ Module(
                     defaults=[]),
                 body=Constant(value=Ellipsis)))],
     type_ignores=[])
+    
+    
 class ast.arguments(posonlyargs, args, vararg, kwonlyargs, kw_defaults, kwarg, defaults)
 The arguments for a function.
 
@@ -1164,6 +1251,7 @@ Module(
             returns=Constant(value='return annotation'))],
     type_ignores=[])
 class ast.Return(value)
+
 A return statement.
 
 >>> print(ast.dump(ast.parse('return 4'), indent=4))
@@ -1174,6 +1262,8 @@ Module(
     type_ignores=[])
 class ast.Yield(value)
 class ast.YieldFrom(value)
+
+
 A yield or yield from expression. Because these are expressions, they must be wrapped in a Expr node if the value sent back is not used.
 
 >>> print(ast.dump(ast.parse('yield x'), indent=4))
@@ -1214,6 +1304,8 @@ Module(
                 'y',
                 'z'])],
     type_ignores=[])
+    
+    
 class ast.ClassDef(name, bases, keywords, starargs, kwargs, body, decorator_list)
 A class definition.
 
@@ -1252,6 +1344,8 @@ Module(
                 Name(id='decorator1', ctx=Load()),
                 Name(id='decorator2', ctx=Load())])],
     type_ignores=[])
+    
+    
 Async and await
 class ast.AsyncFunctionDef(name, args, body, decorator_list, returns, type_comment)
 An async def function definition. Has the same fields as FunctionDef.
@@ -1282,7 +1376,10 @@ Module(
                             keywords=[])))],
             decorator_list=[])],
     type_ignores=[])
+    
+    
 class ast.AsyncFor(target, iter, body, orelse, type_comment)
+
 class ast.AsyncWith(items, body, type_comment)
 async for loops and async with context managers. They have the same fields as For and With, respectively. Only valid in the body of an AsyncFunctionDef.
 
@@ -1385,6 +1482,8 @@ class RewriteName(NodeTransformer):
             slice=Constant(value=node.id),
             ctx=node.ctx
         )
+        
+        
 Keep in mind that if the node you’re operating on has child nodes you must either transform the child nodes yourself or call the generic_visit() method for the node first.
 
 For nodes that were part of a collection of statements (that applies to all statement nodes), the visitor may also return a list of nodes rather than just a single node.
@@ -1397,6 +1496,8 @@ Usually you use the transformer like this:
 
 node = YourTransformer().visit(node)
 ast.dump(node, annotate_fields=True, include_attributes=False, *, indent=None)
+
+
 Return a formatted dump of the tree in node. This is mainly useful for debugging purposes. If annotate_fields is true (by default), the returned string will show the names and the values for fields. If annotate_fields is false, the result string will be more compact by omitting unambiguous field names. Attributes such as line numbers and column offsets are not dumped by default. If this is wanted, include_attributes can be set to true.
 
 If indent is a non-negative integer or string, then the tree will be pretty-printed with that indent level. An indent level of 0, negative, or "" will only insert newlines. None (the default) selects the single line representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as "\t"), that string is used to indent each level.
