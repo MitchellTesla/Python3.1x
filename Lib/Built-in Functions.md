@@ -135,6 +135,7 @@ def all(iterable):
             return False
     return True
 awaitable anext(async_iterator[, default])
+
 When awaited, return the next item from the given asynchronous iterator, or default if given and the iterator is exhausted.
 
 This is the async variant of the next() builtin, and behaves similarly.
@@ -152,6 +153,7 @@ def any(iterable):
             return True
     return False
 ascii(object)
+
 As repr(), return a string containing a printable representation of an object, but escape the non-ASCII characters in the string returned by repr() using \x, \u or \U escapes. This generates a string similar to that returned by repr() in Python 2.
 
 bin(x)
@@ -162,6 +164,7 @@ bin(3)
 '0b11'
 bin(-10)
 '-0b1010'
+
 If prefix “0b” is desired or not, you can use either of the following ways.
 
 >>>
@@ -169,6 +172,7 @@ format(14, '#b'), format(14, 'b')
 ('0b1110', '1110')
 f'{14:#b}', f'{14:b}'
 ('0b1110', '1110')
+
 See also format() for more information.
 
 class bool([x])
@@ -177,6 +181,7 @@ Return a Boolean value, i.e. one of True or False. x is converted using the stan
 Changed in version 3.7: x is now a positional-only parameter.
 
 breakpoint(*args, **kws)
+
 This function drops you into the debugger at the call site. Specifically, it calls sys.breakpointhook(), passing args and kws straight through. By default, sys.breakpointhook() calls pdb.set_trace() expecting no arguments. In this case, it is purely a convenience function so you don’t have to explicitly import pdb or type as much code to enter the debugger. However, sys.breakpointhook() can be set to some other function and breakpoint() will automatically call that, allowing you to drop into the debugger of choice.
 
 Raises an auditing event builtins.breakpoint with argument breakpointhook.
@@ -201,6 +206,7 @@ Without an argument, an array of size 0 is created.
 See also Binary Sequence Types — bytes, bytearray, memoryview and Bytearray Objects.
 
 class bytes([source[, encoding[, errors]]])
+
 Return a new “bytes” object, which is an immutable sequence of integers in the range 0 <= x < 256. bytes is an immutable version of bytearray – it has the same non-mutating methods and the same indexing and slicing behavior.
 
 Accordingly, constructor arguments are interpreted as for bytearray().
@@ -210,16 +216,19 @@ Bytes objects can also be created with literals, see String and Bytes literals.
 See also Binary Sequence Types — bytes, bytearray, memoryview, Bytes Objects, and Bytes and Bytearray Operations.
 
 callable(object)
+
 Return True if the object argument appears callable, False if not. If this returns True, it is still possible that a call fails, but if it is False, calling object will never succeed. Note that classes are callable (calling a class returns a new instance); instances are callable if their class has a __call__() method.
 
 New in version 3.2: This function was first removed in Python 3.0 and then brought back in Python 3.2.
 
 chr(i)
+
 Return the string representing a character whose Unicode code point is the integer i. For example, chr(97) returns the string 'a', while chr(8364) returns the string '€'. This is the inverse of ord().
 
 The valid range for the argument is from 0 through 1,114,111 (0x10FFFF in base 16). ValueError will be raised if i is outside that range.
 
 @classmethod
+
 Transform a method into a class method.
 
 A class method receives the class as implicit first argument, just like an instance method receives the instance. To declare a class method, use this idiom:
@@ -227,6 +236,7 @@ A class method receives the class as implicit first argument, just like an insta
 class C:
     @classmethod
     def f(cls, arg1, arg2, ...): ...
+    
 The @classmethod form is a function decorator – see Function definitions for details.
 
 A class method can be called either on the class (such as C.f()) or on an instance (such as C().f()). The instance is ignored except for its class. If a class method is called for a derived class, the derived class object is passed as the implied first argument.
@@ -265,6 +275,7 @@ Changed in version 3.5: Previously, TypeError was raised when null bytes were en
 New in version 3.8: ast.PyCF_ALLOW_TOP_LEVEL_AWAIT can now be passed in flags to enable support for top-level await, async for, and async with.
 
 class complex([real[, imag]])
+
 Return a complex number with the value real + imag*1j or convert a string or number to a complex number. If the first parameter is a string, it will be interpreted as a complex number and the function must be called without a second parameter. The second parameter can never be a string. Each argument may be any numeric type (including complex). If imag is omitted, it defaults to zero and the constructor serves as a numeric conversion like int and float. If both arguments are omitted, returns 0j.
 
 For a general Python object x, complex(x) delegates to x.__complex__(). If __complex__() is not defined then it falls back to __float__(). If __float__() is not defined then it falls back to __index__().
@@ -277,16 +288,19 @@ Changed in version 3.6: Grouping digits with underscores as in code literals is 
 Changed in version 3.8: Falls back to __index__() if __complex__() and __float__() are not defined.
 
 delattr(object, name)
+
 This is a relative of setattr(). The arguments are an object and a string. The string must be the name of one of the object’s attributes. The function deletes the named attribute, provided the object allows it. For example, delattr(x, 'foobar') is equivalent to del x.foobar.
 
 class dict(**kwarg)
 class dict(mapping, **kwarg)
 class dict(iterable, **kwarg)
+
 Create a new dictionary. The dict object is the dictionary class. See dict and Mapping Types — dict for documentation about this class.
 
 For other containers see the built-in list, set, and tuple classes, as well as the collections module.
 
 dir([object])
+
 Without arguments, return the list of names in the current local scope. With an argument, attempt to return a list of valid attributes for that object.
 
 If the object has a method named __dir__(), this method will be called and must return the list of attributes. This allows objects that implement a custom __getattr__() or __getattribute__() function to customize the way dir() reports their attributes.
@@ -318,11 +332,14 @@ class Shape:
 s = Shape()
 dir(s)
 ['area', 'location', 'perimeter']
+
 Note Because dir() is supplied primarily as a convenience for use at an interactive prompt, it tries to supply an interesting set of names more than it tries to supply a rigorously or consistently defined set of names, and its detailed behavior may change across releases. For example, metaclass attributes are not in the result list when the argument is a class.
 divmod(a, b)
+
 Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using integer division. With mixed operand types, the rules for binary arithmetic operators apply. For integers, the result is the same as (a // b, a % b). For floating point numbers the result is (q, a % b), where q is usually math.floor(a / b) but may be 1 less than that. In any case q * b + a % b is very close to a, if a % b is non-zero it has the same sign as b, and 0 <= abs(a % b) < abs(b).
 
 enumerate(iterable, start=0)
+
 Return an enumerate object. iterable must be a sequence, an iterator, or some other object which supports iteration. The __next__() method of the iterator returned by enumerate() returns a tuple containing a count (from start which defaults to 0) and the values obtained from iterating over iterable.
 
 >>>
@@ -339,6 +356,7 @@ def enumerate(sequence, start=0):
         yield n, elem
         n += 1
 eval(expression[, globals[, locals]])
+
 The arguments are a string and optional globals and locals. If provided, globals must be a dictionary. If provided, locals can be any mapping object.
 
 The expression argument is parsed and evaluated as a Python expression (technically speaking, a condition list) using the globals and locals dictionaries as global and local namespace. If the globals dictionary is present and does not contain a value for the key __builtins__, a reference to the dictionary of the built-in module builtins is inserted under that key before expression is parsed. That way you can control what builtins are available to the executed code by inserting your own __builtins__ dictionary into globals before passing it to eval(). If the locals dictionary is omitted it defaults to the globals dictionary. If both dictionaries are omitted, the expression is executed with the globals and locals in the environment where eval() is called. Note, eval() does not have access to the nested scopes (non-locals) in the enclosing environment.
@@ -349,6 +367,7 @@ The return value is the result of the evaluated expression. Syntax errors are re
 x = 1
 eval('x+1')
 2
+
 This function can also be used to execute arbitrary code objects (such as those created by compile()). In this case pass a code object instead of a string. If the code object has been compiled with 'exec' as the mode argument, eval()'s return value will be None.
 
 Hints: dynamic execution of statements is supported by the exec() function. The globals() and locals() functions returns the current global and local dictionary, respectively, which may be useful to pass around for use by eval() or exec().
@@ -360,6 +379,7 @@ See ast.literal_eval() for a function that can safely evaluate strings with expr
 Raises an auditing event exec with the code object as the argument. Code compilation events may also be raised.
 
 exec(object[, globals[, locals]])
+
 This function supports dynamic execution of Python code. object must be either a string or a code object. If it is a string, the string is parsed as a suite of Python statements which is then executed (unless a syntax error occurs). 1 If it is a code object, it is simply executed. In all cases, the code that’s executed is expected to be valid as file input (see the section “File input” in the Reference Manual). Be aware that the nonlocal, yield, and return statements may not be used outside of function definitions even within the context of code passed to the exec() function. The return value is None.
 
 In all cases, if the optional parts are omitted, the code is executed in the current scope. If only globals is provided, it must be a dictionary (and not a subclass of dictionary), which will be used for both the global and the local variables. If globals and locals are given, they are used for the global and local variables, respectively. If provided, locals can be any mapping object. Remember that at module level, globals and locals are the same dictionary. If exec gets two separate objects as globals and locals, the code will be executed as if it were embedded in a class definition.
@@ -371,6 +391,7 @@ Raises an auditing event exec with the code object as the argument. Code compila
 Note The built-in functions globals() and locals() return the current global and local dictionary, respectively, which may be useful to pass around for use as the second and third argument to exec().
 Note The default locals act as described for function locals() below: modifications to the default locals dictionary should not be attempted. Pass an explicit locals dictionary if you need to see effects of the code on locals after function exec() returns.
 filter(function, iterable)
+
 Construct an iterator from those elements of iterable for which function returns true. iterable may be either a sequence, a container which supports iteration, or an iterator. If function is None, the identity function is assumed, that is, all elements of iterable that are false are removed.
 
 Note that filter(function, iterable) is equivalent to the generator expression (item for item in iterable if function(item)) if function is not None and (item for item in iterable if item) if function is None.
@@ -378,6 +399,7 @@ Note that filter(function, iterable) is equivalent to the generator expression (
 See itertools.filterfalse() for the complementary function that returns elements of iterable for which function returns false.
 
 class float([x])
+
 Return a floating point number constructed from a number or string x.
 
 If the argument is a string, it should contain a decimal number, optionally preceded by a sign, and optionally embedded in whitespace. The optional sign may be '+' or '-'; a '+' sign has no effect on the value produced. The argument may also be a string representing a NaN (not-a-number), or a positive or negative infinity. More precisely, the input must conform to the following grammar after leading and trailing whitespace characters are removed:
@@ -387,6 +409,7 @@ infinity       ::=  "Infinity" | "inf"
 nan            ::=  "nan"
 numeric_value  ::=  floatnumber | infinity | nan
 numeric_string ::=  [sign] numeric_value
+
 Here floatnumber is the form of a Python floating-point literal, described in Floating point literals. Case is not significant, so, for example, “inf”, “Inf”, “INFINITY” and “iNfINity” are all acceptable spellings for positive infinity.
 
 Otherwise, if the argument is an integer or a floating point number, a floating point number with the same value (within Python’s floating point precision) is returned. If the argument is outside the range of a Python float, an OverflowError will be raised.
@@ -408,6 +431,7 @@ Examples:
 1000000.0
 >>> float('-Infinity')
 -inf
+
 The float type is described in Numeric Types — int, float, complex.
 
 Changed in version 3.6: Grouping digits with underscores as in code literals is allowed.
@@ -426,25 +450,31 @@ A call to format(value, format_spec) is translated to type(value).__format__(val
 Changed in version 3.4: object().__format__(format_spec) raises TypeError if format_spec is not an empty string.
 
 class frozenset([iterable])
+
 Return a new frozenset object, optionally with elements taken from iterable. frozenset is a built-in class. See frozenset and Set Types — set, frozenset for documentation about this class.
 
 For other containers see the built-in set, list, tuple, and dict classes, as well as the collections module.
 
 getattr(object, name[, default])
+
 Return the value of the named attribute of object. name must be a string. If the string is the name of one of the object’s attributes, the result is the value of that attribute. For example, getattr(x, 'foobar') is equivalent to x.foobar. If the named attribute does not exist, default is returned if provided, otherwise AttributeError is raised.
 
 Note Since private name mangling happens at compilation time, one must manually mangle a private attribute’s (attributes with two leading underscores) name in order to retrieve it with getattr().
 globals()
+
 Return a dictionary representing the current global symbol table. This is always the dictionary of the current module (inside a function or method, this is the module where it is defined, not the module from which it is called).
 
 hasattr(object, name)
+
 The arguments are an object and a string. The result is True if the string is the name of one of the object’s attributes, False if not. (This is implemented by calling getattr(object, name) and seeing whether it raises an AttributeError or not.)
 
 hash(object)
+
 Return the hash value of the object (if it has one). Hash values are integers. They are used to quickly compare dictionary keys during a dictionary lookup. Numeric values that compare equal have the same hash value (even if they are of different types, as is the case for 1 and 1.0).
 
 Note For objects with custom __hash__() methods, note that hash() truncates the return value based on the bit width of the host machine. See __hash__() for details.
 help([object])
+
 Invoke the built-in help system. (This function is intended for interactive use.) If no argument is given, the interactive help system starts on the interpreter console. If the argument is a string, then the string is looked up as the name of a module, function, class, method, keyword, or documentation topic, and a help page is printed on the console. If the argument is any other kind of object, a help page on the object is generated.
 
 Note that if a slash(/) appears in the parameter list of a function, when invoking help(), it means that the parameters prior to the slash are positional-only. For more info, see the FAQ entry on positional-only parameters.
@@ -461,6 +491,7 @@ hex(255)
 '0xff'
 hex(-42)
 '-0x2a'
+
 If you want to convert an integer number to an uppercase or lower hexadecimal string with prefix or not, you can use either of the following ways:
 
 >>>
@@ -470,12 +501,14 @@ format(255, '#x'), format(255, 'x'), format(255, 'X')
 ('0xff', 'ff', 'FF')
 f'{255:#x}', f'{255:x}', f'{255:X}'
 ('0xff', 'ff', 'FF')
+
 See also format() for more information.
 
 See also int() for converting a hexadecimal string to an integer using a base of 16.
 
 Note To obtain a hexadecimal string representation for a float, use the float.hex() method.
 id(object)
+
 Return the “identity” of an object. This is an integer which is guaranteed to be unique and constant for this object during its lifetime. Two objects with non-overlapping lifetimes may have the same id() value.
 
 CPython implementation detail: This is the address of the object in memory.
@@ -483,6 +516,7 @@ CPython implementation detail: This is the address of the object in memory.
 Raises an auditing event builtins.id with argument id.
 
 input([prompt])
+
 If the prompt argument is present, it is written to standard output without a trailing newline. The function then reads a line from input, converts it to a string (stripping a trailing newline), and returns that. When EOF is read, EOFError is raised. Example:
 
 >>>
@@ -490,6 +524,7 @@ If the prompt argument is present, it is written to standard output without a tr
 --> Monty Python's Flying Circus
 >>> s  
 "Monty Python's Flying Circus"
+
 If the readline module was loaded, then input() will use it to provide elaborate line editing and history features.
 
 Raises an auditing event builtins.input with argument prompt before reading input
@@ -498,6 +533,7 @@ Raises an auditing event builtins.input/result with the result after successfull
 
 class int([x])
 class int(x, base=10)
+
 Return an integer object constructed from a number or string x, or return 0 if no arguments are given. If x defines __int__(), int(x) returns x.__int__(). If x defines __index__(), it returns x.__index__(). If x defines __trunc__(), it returns x.__trunc__(). For floating point numbers, this truncates towards zero.
 
 If x is not a number or if base is given, then x must be a string, bytes, or bytearray instance representing an integer literal in radix base. Optionally, the literal can be preceded by + or - (with no space in between) and surrounded by whitespace. A base-n literal consists of the digits 0 to n-1, with a to z (or A to Z) having values 10 to 35. The default base is 10. The allowed values are 0 and 2–36. Base-2, -8, and -16 literals can be optionally prefixed with 0b/0B, 0o/0O, or 0x/0X, as with integer literals in code. Base 0 means to interpret exactly as a code literal, so that the actual base is 2, 8, 10, or 16, and so that int('010', 0) is not legal, while int('010') is, as well as int('010', 8).
@@ -513,16 +549,19 @@ Changed in version 3.7: x is now a positional-only parameter.
 Changed in version 3.8: Falls back to __index__() if __int__() is not defined.
 
 isinstance(object, classinfo)
+
 Return True if the object argument is an instance of the classinfo argument, or of a (direct, indirect or virtual) subclass thereof. If object is not an object of the given type, the function always returns False. If classinfo is a tuple of type objects (or recursively, other such tuples) or a Union Type of multiple types, return True if object is an instance of any of the types. If classinfo is not a type or tuple of types and such tuples, a TypeError exception is raised.
 
 Changed in version 3.10: classinfo can be a Union Type.
 
 issubclass(class, classinfo)
+
 Return True if class is a subclass (direct, indirect or virtual) of classinfo. A class is considered a subclass of itself. classinfo may be a tuple of class objects or a Union Type, in which case every entry in classinfo will be checked. In any other case, a TypeError exception is raised.
 
 Changed in version 3.10: classinfo can be a Union Type.
 
 iter(object[, sentinel])
+
 Return an iterator object. The first argument is interpreted very differently depending on the presence of the second argument. Without a second argument, object must be a collection object which supports the iteration protocol (the __iter__() method), or it must support the sequence protocol (the __getitem__() method with integer arguments starting at 0). If it does not support either of those protocols, TypeError is raised. If the second argument, sentinel, is given, then object must be a callable object. The iterator created in this case will call object with no arguments for each call to its __next__() method; if the value returned is equal to sentinel, StopIteration will be raised, otherwise the value will be returned.
 
 See also Iterator Types.
@@ -534,18 +573,22 @@ with open('mydata.db', 'rb') as f:
     for block in iter(partial(f.read, 64), b''):
         process_block(block)
 len(s)
+
 Return the length (the number of items) of an object. The argument may be a sequence (such as a string, bytes, tuple, list, or range) or a collection (such as a dictionary, set, or frozen set).
 
 CPython implementation detail: len raises OverflowError on lengths larger than sys.maxsize, such as range(2 ** 100).
 
 class list([iterable])
+
 Rather than being a function, list is actually a mutable sequence type, as documented in Lists and Sequence Types — list, tuple, range.
 
 locals()
+
 Update and return a dictionary representing the current local symbol table. Free variables are returned by locals() when it is called in function blocks, but not in class blocks. Note that at the module level, locals() and globals() are the same dictionary.
 
 Note The contents of this dictionary should not be modified; changes may not affect the values of local and free variables used by the interpreter.
 map(function, iterable, ...)
+
 Return an iterator that applies function to every item of iterable, yielding the results. If additional iterable arguments are passed, function must take that many arguments and is applied to the items from all iterables in parallel. With multiple iterables, the iterator stops when the shortest iterable is exhausted. For cases where the function inputs are already arranged into argument tuples, see itertools.starmap().
 
 max(iterable, *[, key, default])
@@ -563,10 +606,12 @@ New in version 3.4: The default keyword-only argument.
 Changed in version 3.8: The key can be None.
 
 class memoryview(obj)
+
 Return a “memory view” object created from the given argument. See Memory Views for more information.
 
 min(iterable, *[, key, default])
 min(arg1, arg2, *args[, key])
+
 Return the smallest item in an iterable or the smallest of two or more arguments.
 
 If one positional argument is provided, it should be an iterable. The smallest item in the iterable is returned. If two or more positional arguments are provided, the smallest of the positional arguments is returned.
@@ -580,6 +625,7 @@ New in version 3.4: The default keyword-only argument.
 Changed in version 3.8: The key can be None.
 
 next(iterator[, default])
+
 Retrieve the next item from the iterator by calling its __next__() method. If default is given, it is returned if the iterator is exhausted, otherwise StopIteration is raised.
 
 class object
@@ -587,6 +633,7 @@ Return a new featureless object. object is a base for all classes. It has the me
 
 Note object does not have a __dict__, so you can’t assign arbitrary attributes to an instance of the object class.
 oct(x)
+
 Convert an integer number to an octal string prefixed with “0o”. The result is a valid Python expression. If x is not a Python int object, it has to define an __index__() method that returns an integer. For example:
 
 >>>
@@ -594,6 +641,7 @@ oct(8)
 '0o10'
 oct(-56)
 '-0o70'
+
 If you want to convert an integer number to octal string either with prefix “0o” or not, you can use either of the following ways.
 
 >>>
@@ -603,6 +651,7 @@ format(10, '#o'), format(10, 'o')
 ('0o12', '12')
 f'{10:#o}', f'{10:o}'
 ('0o12', '12')
+
 See also format() for more information.
 
 open(file, mode='r', buffering=- 1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
@@ -699,6 +748,8 @@ The following example uses the dir_fd parameter of the os.open() function to ope
 ...     print('This will be written to somedir/spamspam.txt', file=f)
 ...
 >>> os.close(dir_fd)  # don't leak a file descriptor
+>>> 
+
 The type of file object returned by the open() function depends on the mode. When open() is used to open a file in a text mode ('w', 'r', 'wt', 'rt', etc.), it returns a subclass of io.TextIOBase (specifically io.TextIOWrapper). When used to open a file in a binary mode with buffering, the returned class is a subclass of io.BufferedIOBase. The exact class varies: in read binary mode, it returns an io.BufferedReader; in write binary and append binary modes, it returns an io.BufferedWriter, and in read/write mode, it returns an io.BufferedRandom. When buffering is disabled, the raw stream, a subclass of io.RawIOBase, io.FileIO, is returned.
 
 See also the file handling modules, such as, fileinput, io (where open() is declared), os, os.path, tempfile, and shutil.
@@ -708,6 +759,7 @@ Raises an auditing event open with arguments file, mode, flags.
 The mode and flags arguments may have been modified or inferred from the original call.
 
 Changed in version 3.3:
+
 The opener parameter was added.
 
 The 'x' mode was added.
@@ -748,6 +800,7 @@ Here’s an example of computing an inverse for 38 modulo 97:
 23
 >>> 23 * 38 % 97 == 1
 True
+
 Changed in version 3.8: For int operands, the three-argument form of pow now allows the second argument to be negative, permitting computation of modular inverses.
 
 Changed in version 3.8: Allow keyword arguments. Formerly, only positional arguments were supported.
@@ -784,6 +837,7 @@ class C:
         del self._x
 
     x = property(getx, setx, delx, "I'm the 'x' property.")
+    
 If c is an instance of C, c.x will invoke the getter, c.x = value will invoke the setter and del c.x the deleter.
 
 If given, doc will be the docstring of the property attribute. Otherwise, the property will copy fget’s docstring (if it exists). This makes it possible to create read-only properties easily using property() as a decorator:
@@ -796,6 +850,7 @@ class Parrot:
     def voltage(self):
         """Get the current voltage."""
         return self._voltage
+        
 The @property decorator turns the voltage() method into a “getter” for a read-only attribute with the same name, and it sets the docstring for voltage to “Get the current voltage.”
 
 A property object has getter, setter, and deleter methods usable as decorators that create a copy of the property with the corresponding accessor function set to the decorated function. This is best explained with an example:
@@ -816,6 +871,7 @@ class C:
     @x.deleter
     def x(self):
         del self._x
+        
 This code is exactly equivalent to the first example. Be sure to give the additional functions the same name as the original property (x in this case.)
 
 The returned property object also has the attributes fget, fset, and fdel corresponding to the constructor arguments.
@@ -824,15 +880,19 @@ Changed in version 3.5: The docstrings of property objects are now writeable.
 
 class range(stop)
 class range(start, stop[, step])
+
 Rather than being a function, range is actually an immutable sequence type, as documented in Ranges and Sequence Types — list, tuple, range.
 
 repr(object)
+
 Return a string containing a printable representation of an object. For many types, this function makes an attempt to return a string that would yield an object with the same value when passed to eval(), otherwise the representation is a string enclosed in angle brackets that contains the name of the type of the object together with additional information often including the name and address of the object. A class can control what this function returns for its instances by defining a __repr__() method.
 
 reversed(seq)
+
 Return a reverse iterator. seq must be an object which has a __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method with integer arguments starting at 0).
 
 round(number[, ndigits])
+
 Return number rounded to ndigits precision after the decimal point. If ndigits is omitted or is None, it returns the nearest integer to its input.
 
 For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.
@@ -841,19 +901,23 @@ For a general Python object number, round delegates to number.__round__.
 
 Note The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67 instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.
 class set([iterable])
+
 Return a new set object, optionally with elements taken from iterable. set is a built-in class. See set and Set Types — set, frozenset for documentation about this class.
 
 For other containers see the built-in frozenset, list, tuple, and dict classes, as well as the collections module.
 
 setattr(object, name, value)
+
 This is the counterpart of getattr(). The arguments are an object, a string and an arbitrary value. The string may name an existing attribute or a new attribute. The function assigns the value to the attribute, provided the object allows it. For example, setattr(x, 'foobar', 123) is equivalent to x.foobar = 123.
 
 Note Since private name mangling happens at compilation time, one must manually mangle a private attribute’s (attributes with two leading underscores) name in order to set it with setattr().
 class slice(stop)
 class slice(start, stop[, step])
+
 Return a slice object representing the set of indices specified by range(start, stop, step). The start and step arguments default to None. Slice objects have read-only data attributes start, stop and step which merely return the argument values (or their default). They have no other explicit functionality; however they are used by NumPy and other third party packages. Slice objects are also generated when extended indexing syntax is used. For example: a[start:stop:step] or a[start:stop, i]. See itertools.islice() for an alternate version that returns an iterator.
 
 sorted(iterable, *, key=None, reverse=False)
+
 Return a new sorted list from the items in iterable.
 
 Has two optional arguments which must be specified as keyword arguments.
@@ -869,6 +933,7 @@ The built-in sorted() function is guaranteed to be stable. A sort is stable if i
 For sorting examples and a brief sorting tutorial, see Sorting HOW TO.
 
 @staticmethod
+
 Transform a method into a static method.
 
 A static method does not receive an implicit first argument. To declare a static method, use this idiom:
@@ -876,6 +941,7 @@ A static method does not receive an implicit first argument. To declare a static
 class C:
     @staticmethod
     def f(arg1, arg2, ...): ...
+    
 The @staticmethod form is a function decorator – see Function definitions for details.
 
 A static method can be called either on the class (such as C.f()) or on an instance (such as C().f()). Moreover, they can be called as regular functions (such as f()).
@@ -889,17 +955,20 @@ def regular_function():
 
 class C:
     method = staticmethod(regular_function)
+    
 For more information on static methods, see The standard type hierarchy.
 
 Changed in version 3.10: Static methods now inherit the method attributes (__module__, __name__, __qualname__, __doc__ and __annotations__), have a new __wrapped__ attribute, and are now callable as regular functions.
 
 class str(object='')
 class str(object=b'', encoding='utf-8', errors='strict')
+
 Return a str version of object. See str() for details.
 
 str is the built-in string class. For general information about strings, see Text Sequence Type — str.
 
 sum(iterable, /, start=0)
+
 Sums start and the items of an iterable from left to right and returns the total. The iterable’s items are normally numbers, and the start value is not allowed to be a string.
 
 For some use cases, there are good alternatives to sum(). The preferred, fast way to concatenate a sequence of strings is by calling ''.join(sequence). To add floating point values with extended precision, see math.fsum(). To concatenate a series of iterables, consider using itertools.chain().
@@ -907,6 +976,7 @@ For some use cases, there are good alternatives to sum(). The preferred, fast wa
 Changed in version 3.8: The start parameter can be specified as a keyword argument.
 
 class super([type[, object-or-type]])
+
 Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class.
 
 The object-or-type determines the method resolution order to be searched. The search starts from the class right after the type.
@@ -927,6 +997,7 @@ class C(B):
     def method(self, arg):
         super().method(arg)    # This does the same thing as:
                                # super(C, self).method(arg)
+                               
 In addition to method lookups, super() also works for attribute lookups. One possible use case for this is calling descriptors in a parent or sibling class.
 
 Note that super() is implemented as part of the binding process for explicit dotted attribute lookups such as super().__getitem__(name). It does so by implementing its own __getattribute__() method for searching classes in a predictable order that supports cooperative multiple inheritance. Accordingly, super() is undefined for implicit lookups using statements or operators such as super()[name].
@@ -936,10 +1007,12 @@ Also note that, aside from the zero argument form, super() is not limited to use
 For practical suggestions on how to design cooperative classes using super(), see guide to using super().
 
 class tuple([iterable])
+
 Rather than being a function, tuple is actually an immutable sequence type, as documented in Tuples and Sequence Types — list, tuple, range.
 
 class type(object)
 class type(name, bases, dict, **kwds)
+
 With one argument, return the type of an object. The return value is a type object and generally the same object as returned by object.__class__.
 
 The isinstance() built-in function is recommended for testing the type of an object, because it takes subclasses into account.
@@ -951,6 +1024,7 @@ class X:
     a = 1
 
 X = type('X', (), dict(a=1))
+
 See also Type Objects.
 
 Keyword arguments provided to the three argument form are passed to the appropriate metaclass machinery (usually __init_subclass__()) in the same way that keywords in a class definition (besides metaclass) would.
@@ -960,6 +1034,7 @@ See also Customizing class creation.
 Changed in version 3.6: Subclasses of type which don’t override type.__new__ may no longer use the one-argument form to get the type of an object.
 
 vars([object])
+
 Return the __dict__ attribute for a module, class, instance, or any other object with a __dict__ attribute.
 
 Objects such as modules and instances have an updateable __dict__ attribute; however, other objects may have write restrictions on their __dict__ attributes (for example, classes use a types.MappingProxyType to prevent direct dictionary updates).
@@ -969,6 +1044,7 @@ Without an argument, vars() acts like locals(). Note, the locals dictionary is o
 A TypeError exception is raised if an object is specified but it doesn’t have a __dict__ attribute (for example, if its class defines the __slots__ attribute).
 
 zip(*iterables, strict=False)
+
 Iterate over several iterables in parallel, producing tuples with an item from each one.
 
 Example:
@@ -980,6 +1056,7 @@ Example:
 (1, 'sugar')
 (2, 'spice')
 (3, 'everything nice')
+
 More formally: zip() returns an iterator of tuples, where the i-th tuple contains the i-th element from each of the argument iterables.
 
 Another way to think of zip() is that it turns rows into columns, and columns into rows. This is similar to transposing a matrix.
