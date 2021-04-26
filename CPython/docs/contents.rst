@@ -1,4 +1,5 @@
 Python Documentation contents
+
 .. toctree::
 
    whatsnew/index.rst
