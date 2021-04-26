@@ -1,23 +1,30 @@
 Python Documentation README
+
 This directory contains the reStructuredText (reST) sources to the Python documentation. You don't need to build them yourself, prebuilt versions are available.
 
 Documentation on authoring Python documentation, including information about both style and markup, is available in the "Documenting Python" chapter of the developers guide.
 
 Building the docs
+
 The documentation is built with several tools which are not included in this tree but are maintained separately and are available from PyPI.
 
 Sphinx
 blurb
 python-docs-theme
+
 The easiest way to install these tools is to create a virtual environment and install the tools into there.
 
 Using make
 To get started on UNIX, you can create a virtual environment with the command
 
 make venv
+
+
 That will install all the tools necessary to build the documentation. Assuming the virtual environment was created in the venv directory (the default; configurable with the VENVDIR variable), you can run the following command to build the HTML output files:
 
 make html
+
+
 By default, if the virtual environment is not created, the Makefile will look for instances of sphinxbuild and blurb installed on your process PATH (configurable with the SPHINXBUILD and BLURB variables).
 
 On Windows, we try to emulate the Makefile as closely as possible with a make.bat file. If you need to specify the Python interpreter to use, set the PYTHON environment variable instead.
@@ -64,14 +71,17 @@ First, install the tool dependencies from PyPI.
 Then, from the Doc directory, run
 
 sphinx-build -b<builder> . build/<builder>
+
 where <builder> is one of html, text, latex, or htmlhelp (for explanations see the make targets above).
 
 Deprecation header
+
 You can define the outdated variable in html_context to show a red banner on each page redirecting to the "latest" version.
 
 The link points to the same page on /3/, sadly for the moment the language is lost during the process.
 
 Contributing
+
 Bugs in the content should be reported to the Python bug tracker.
 
 Bugs in the toolset should be reported to the tools themselves.
