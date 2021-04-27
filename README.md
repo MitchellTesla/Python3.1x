@@ -1,8 +1,10 @@
-# Python3.1 alpha Experimental
+# Python 3.1 alpha   ~Experimental
+
 Python 3.1.1 has been superseded by 3.1.2.
 
+This “Python library” was authored by Justin Mitchell for experimental research and development with Python.
 
-The “Python library” contains several different kinds of components.
+It contains several different kinds of components.
 
 It contains data types that would normally be considered part of the “core” of a language, such as numbers and lists. For these types, the Python language core defines the form of literals and places some constraints on their semantics, but does not fully define the semantics. (On the other hand, the language core does define syntactic properties like the spelling and priorities of operators.)
 
@@ -14,7 +16,7 @@ This manual is organized “from the inside out:” it first describes the built
 
 This means that if you start reading this manual from the start, and skip to the next chapter when you get bored, you will get a reasonable overview of the available modules and application areas that are supported by the Python library. Of course, you don’t have to read it like a novel — you can also browse the table of contents (in front of the manual), or look for a specific function, module or term in the index (in the back). And finally, if you enjoy learning about random subjects, you choose a random page number (see module random) and read a section or two. Regardless of the order in which you read the sections of this manual, it helps to start with chapter Built-in Functions, as the remainder of the manual assumes familiarity with this material.
 
-Let the show begin!
+Let the show begin!  Welcome to the World of Machine-Learning with Python!!!
 
 Notes on availability
 An “Availability: Unix” note means that this function is commonly found on Unix systems. It does not make any claims about its existence on a specific operating system.
