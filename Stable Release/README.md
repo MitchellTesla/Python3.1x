@@ -1,7 +1,8 @@
 Python 3.1.1
 Release Date: Aug. 17, 2009
 
-Python 3.1.1 has been superseded by 3.1.2. You can download 3.1.2. from this repository 
+Python 3.1.1 has been superseded by 3.1.2. You can download 3.1.2. from this repository.
+(This version is experimental)
 
 Python 3.1.1 was released on August 17th, 2009.
 
@@ -19,6 +20,7 @@ See these resources for further information:
 What's New in 3.1?
 What's new in Python 3000
 Python 3.1.1 Change Log
+
 Online Documentation
 Conversion tool for Python 2.x code: 2to3
 Report bugs at http://bugs.python.org.
