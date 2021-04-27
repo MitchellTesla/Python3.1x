@@ -1,4 +1,4 @@
-This is Python version 3.10.0 alpha 7
+Python version 3.10.0 alpha 7 experimental
 =====================================
 
 .. image:: https://travis-ci.com/python/cpython.svg?branch=master
@@ -258,6 +258,9 @@ Copyright (c) 1995-2001 Corporation for National Research Initiatives.  All
 rights reserved.
 
 Copyright (c) 1991-1995 Stichting Mathematisch Centrum.  All rights reserved.
+
+Copyright (c) 2020-2021 Justin Mitchell MitchellTesla,  All rights reserved.
+
 
 See the `LICENSE <https://github.com/python/cpython/blob/master/LICENSE>`_ for
 information on the history of this software, terms & conditions for usage, and a
